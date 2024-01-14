@@ -73,6 +73,33 @@ public class Mostrartaula {
             }
         }
         System.out.println();
+        while (rs.next()) {
+            // Obtener datos de cada columna por nombre o índice
+            ArrayList<String> lista = new ArrayList<>();
+
+            // Ejemplo utilizando el nombre de la columna
+            int id = rs.getInt("id");
+            String nom = rs.getString("nom");
+            int atac = rs.getInt("atac");
+            int defensa = rs.getInt("defensa");
+            int idfaccio = rs.getInt("idFaccio");
+
+            lista.add(id+"");
+            lista.add(nom);
+            lista.add(atac+"");
+            lista.add(defensa+"");
+            lista.add(idfaccio+"");
+
+            for (String string : lista) {
+                System.out.print(string+"\t\t\t\t");
+            }
+            System.out.println("");
+            
+
+
+
+        }
+
     }
 
     void mostrarfaccion(Connection conn, ResultSet rs) throws SQLException {
@@ -92,6 +119,27 @@ public class Mostrartaula {
             }
         }
         System.out.println();
+        while (rs.next()) {
+            // Obtener datos de cada columna por nombre o índice
+
+            // Ejemplo utilizando el nombre de la columna
+            int id = rs.getInt("id");
+            String nom = rs.getString("nom");
+            String resum = rs.getString("resum");
+
+            // Puedes hacer algo con los datos, por ejemplo, imprimirlos
+            System.out.print(id + "\t\t\t\t" + nom + "\t\t\t");
+            int contador = 0;
+            for (int i = 0; i < resum.length(); i++) {
+                System.err.print(resum.charAt(i));
+                contador++;
+                if (contador == 40) {
+                    System.out.print("\n\t\t\t\t\t\t\t\t");
+                    contador = 0;
+                }
+            }
+            System.out.println("\n");
+        }
 
     }
 }
