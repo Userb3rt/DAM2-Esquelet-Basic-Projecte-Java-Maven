@@ -1,5 +1,6 @@
 package cat.iesesteveterradas;
 
+import java.sql.Connection;
 import java.util.Scanner;
 
 public class Menu {
@@ -9,8 +10,9 @@ public class Menu {
     private String option;
     private Scanner sc = new Scanner(System.in);
     private boolean run = true;
+    Mostrartaula mostrartabla;
 
-    void mostrarmenuprincipal() {
+    void mostrarmenuprincipal(Connection conn) {
         while (run) {
             System.out.println("---" + titol00 + "---");
             for (int i = 0; i < menu00.length; i++) {
@@ -20,6 +22,8 @@ public class Menu {
             option = sc.nextLine();
             switch (option) {
                 case "1":
+                    mostrartabla = new Mostrartaula(conn);
+                    mostrartabla.menutablas();
                     break;
                 case "2":
 
