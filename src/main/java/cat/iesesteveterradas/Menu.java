@@ -13,6 +13,9 @@ public class Menu {
     private boolean run = true;
     Mostrartaula mostrartabla;
     Mostrartaulafaccio mostrartaulafaccio;
+    MostrarMatacantfacció mostrarMatacantfacció;
+    MostrarMdefensafacció mostrarMdefensafacció;
+
 
     void mostrarmenuprincipal(Connection conn) {
         while (run) {
@@ -36,10 +39,20 @@ public class Menu {
                     }
                     break;
                 case "3":
-
+                    mostrarMatacantfacció = new MostrarMatacantfacció(conn);
+                    try {
+                        mostrarMatacantfacció.mostrarfaccions();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case "4":
-
+                    mostrarMdefensafacció = new MostrarMdefensafacció(conn);
+                    try {
+                        mostrarMdefensafacció.mostrarfaccions();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case "5":
                     run = false;
