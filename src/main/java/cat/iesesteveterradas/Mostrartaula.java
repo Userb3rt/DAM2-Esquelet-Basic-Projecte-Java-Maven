@@ -32,9 +32,8 @@ public class Mostrartaula {
                     try {
                         ResultSet rs = UtilsSQLite.querySelect(conn,
                                 "SELECT * FROM " + cabecera.get(Integer.parseInt(option)) + ";");
-                        mostrarpersonaje(conn, rs);
+                        mostrarpersonaje(rs);
                     } catch (SQLException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                     break;
@@ -44,7 +43,6 @@ public class Mostrartaula {
                                 "SELECT * FROM " + cabecera.get(Integer.parseInt(option)) + ";");
                         mostrarfaccion(conn, rs);
                     } catch (SQLException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                     break;
@@ -56,7 +54,7 @@ public class Mostrartaula {
 
     }
 
-    void mostrarpersonaje(Connection conn, ResultSet rs) throws SQLException {
+    void mostrarpersonaje(ResultSet rs) throws SQLException {
         ResultSetMetaData metaData = rs.getMetaData();
 
         // Obtener el número de columnas
@@ -84,19 +82,16 @@ public class Mostrartaula {
             int defensa = rs.getInt("defensa");
             int idfaccio = rs.getInt("idFaccio");
 
-            lista.add(id+"");
+            lista.add(id + "");
             lista.add(nom);
-            lista.add(atac+"");
-            lista.add(defensa+"");
-            lista.add(idfaccio+"");
+            lista.add(atac + "");
+            lista.add(defensa + "");
+            lista.add(idfaccio + "");
 
             for (String string : lista) {
-                System.out.print(string+"\t\t\t\t");
+                System.out.print(string + "\t\t\t\t");
             }
             System.out.println("");
-            
-
-
 
         }
 

@@ -1,6 +1,7 @@
 package cat.iesesteveterradas;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Menu {
@@ -11,6 +12,7 @@ public class Menu {
     private Scanner sc = new Scanner(System.in);
     private boolean run = true;
     Mostrartaula mostrartabla;
+    Mostrartaulafaccio mostrartaulafaccio;
 
     void mostrarmenuprincipal(Connection conn) {
         while (run) {
@@ -26,7 +28,12 @@ public class Menu {
                     mostrartabla.menutablas();
                     break;
                 case "2":
-
+                    mostrartaulafaccio = new Mostrartaulafaccio(conn);
+                    try {
+                        mostrartaulafaccio.mostrarfaccions();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case "3":
 
