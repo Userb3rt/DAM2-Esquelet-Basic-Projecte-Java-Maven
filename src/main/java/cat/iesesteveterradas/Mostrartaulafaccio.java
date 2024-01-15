@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.print.DocFlavor.STRING;
+
 /**
  * Mostrartaulafaccio
  */
@@ -26,13 +28,13 @@ public class Mostrartaulafaccio {
         String menuvisual = "";
 
         while (rs.next()) {
-            menuvisual += rs.getInt("id")+") "+rs.getString("nom")+"\n";
+            menuvisual += rs.getInt("id") + ") " + rs.getString("nom") + "\n";
             faccionesnumber.add(rs.getInt("id"));
         }
 
         while (!option.equals("100")) {
 
-            System.out.println(menuvisual+"100) Atrás\n-->");
+            System.out.println(menuvisual + "100) Atrás\n-->");
             option = sc.nextLine();
             try {
                 if (!option.equals("100") && faccionesnumber.contains(Integer.parseInt(option))) {
@@ -48,7 +50,44 @@ public class Mostrartaulafaccio {
         }
     }
 
-    public void mostrartabla(ResultSet rs) throws SQLException{
+    public void mostrartabla(ResultSet rs) throws SQLException {
         ResultSetMetaData cabecera = rs.getMetaData();
+        int espaciado = 20;
+        int numColumnas = cabecera.getColumnCount();
+
+        // Imprimir el nombre de las columnas
+        for (int i = 1; i <= numColumnas; i++) {
+            String nombreColumna = cabecera.getColumnName(i);
+            System.out.print(nombreColumna);
+            for (int j = 0; j < espaciado - nombreColumna.length(); j++) {
+                System.out.print(" ");
+            }
+            // Agregar cuatro tabulaciones después de cada nombre de columna
+        }
+        System.out.println();
+
+        while (rs.next()) {
+            ArrayList<String> datos = new ArrayList<>();
+
+            int id = rs.getInt("id");
+            String nom = rs.getString("nom");
+            int atac = rs.getInt("atac");
+            int defensa = rs.getInt("defensa");
+            int idfaccio = rs.getInt("idFaccio");
+
+            datos.add(id + "");
+            datos.add(nom);
+            datos.add(atac + "");
+            datos.add(defensa + "");
+            datos.add(idfaccio + "");
+
+            for (String string : datos) {
+                System.out.print(string);
+                for (int i = 0; i < espaciado-string.length(); i++) {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
     }
 }
